@@ -19,9 +19,10 @@
         <div class="title">{{ $t('refernces') }}</div>
       </a-card>
       <a-card class="card card-nav" hoverable>
-        <a-button type="text" size="small" @click="$i18n.setLocale($i18n.locale == 'ja' ? 'zh-CN' : 'ja')">{{
-            $t('lang_switch')
-        }}</a-button>
+        <a-button type="text" size="small" :lang="$i18n.locale == 'ja' ? 'zh-CN' : 'ja'"
+          @click="$i18n.setLocale($i18n.locale == 'ja' ? 'zh-CN' : 'ja')">{{
+              $t('lang_switch')
+          }}</a-button>
       </a-card>
       <a-card class="card card-setting" hoverable>
         <table>
@@ -47,7 +48,7 @@
           </tr>
         </table>
       </a-card>
-      <div class="footer">
+      <div class="footer" lang="zh-CN">
         <span>&copy; 2022 梦途圣地巡礼 All rights reserved.</span>
       </div>
     </div>
@@ -59,21 +60,49 @@
 </template>
 <script lang="ts" setup>
 const { t } = useI18n()
+const nuxtApp = useNuxtApp()
 useHead({
   title: computed(() => t('title'))
 })
+nuxtApp.$i18n.onLanguageSwitched = (oldLocale: string, newLocale: string) => {
+  useHead({
+    htmlAttrs: {
+      lang: computed(() => newLocale)
+    }
+  })
+}
+</script>
+<script lang="ts">
+export default {
+  created() {
+    useHead({
+      htmlAttrs: {
+        lang: this.$i18n.locale
+      }
+    })
+  }
+}
 </script>
 <style lang="less">
-a {
-  text-decoration: none;
-  transition: all .1s ease-in-out;
+*:lang(ja) {
+  font-family: 'Zen Maru Gothic';
+}
+
+*:lang(zh-CN) {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 body {
   -webkit-font-smoothing: antialiased;
   font-smoothing: antialiased;
-  font-family: 'Zen Maru Gothic';
+  font-family: unset;
 }
+
+a {
+  text-decoration: none;
+  transition: all .1s ease-in-out;
+}
+
 
 .container {
   max-width: 1000px;
