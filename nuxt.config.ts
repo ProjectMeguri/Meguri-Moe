@@ -1,5 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+    app: {
+        head: {
+            "link": [
+                { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+                { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: "" },
+                { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&display=swap' },
+            ],
+        },
+    },
     typescript: {
         shim: false
     },
@@ -21,14 +30,8 @@ export default defineNuxtConfig({
         },
         lazy: true,
         langDir: 'lang',
-        defaultLocale: 'zh-CN',
+        defaultLocale: 'ja',
         locales: [
-            {
-                code: 'zh-CN',
-                file: 'zh-CN.json',
-                iso: 'zh-CN',
-                name: '简体中文'
-            },
             {
                 code: 'ja',
                 file: 'ja.json',
@@ -36,10 +39,10 @@ export default defineNuxtConfig({
                 name: '日本語'
             },
             {
-                code: 'en',
-                file: 'en.json',
-                iso: 'en-US',
-                name: 'English'
+                code: 'zh-CN',
+                file: 'zh-CN.json',
+                iso: 'zh-CN',
+                name: '简体中文'
             }
         ]
     }

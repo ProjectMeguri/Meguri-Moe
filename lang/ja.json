@@ -1,3 +1,19 @@
 {
-    "test": "テスト"
+    "title": "「夢野巡璃」参考資料",
+    "name_family": "夢野",
+    "name_given": "巡璃",
+    "name_family_pron": "ゆめの",
+    "name_given_pron": "めぐり",
+    "refernces": "参考資料",
+    "lang_switch": "中文",
+    "name": "名前",
+    "yumeno_meguri": "夢野 巡璃",
+    "pronounce": "読み方",
+    "yumeno_meguri_pron": "ゆめの めぐり",
+    "age": "年齢",
+    "13yo": "13歳",
+    "height": "身長",
+    "145cm": "145㌢",
+    "bust": "バスト",
+    "a_cup": "Aカップ"
 }
