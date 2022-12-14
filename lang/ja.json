@@ -11,9 +11,18 @@
     "pronounce": "読み方",
     "yumeno_meguri_pron": "ゆめの めぐり",
     "age": "年齢",
-    "13yo": "13歳",
+    "13yo": "13歳・中学2年生",
+    "birthday": "誕生日",
+    "birthday_date": "10月11日",
     "height": "身長",
     "145cm": "145㌢",
     "bust": "バスト",
-    "a_cup": "Aカップ"
+    "a_cup": "Aカップ",
+    "eye_color": "瞳の色",
+    "hair_style": "髪型",
+    "hair_style_val": "ツーサイドアップ",
+    "hair_color": "髪色",
+    "color_help": "ご参考まで",
+    "chara": "特徴",
+    "chara_val": "清楚で元気なロリっぽい少女"
 }

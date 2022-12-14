@@ -23,11 +23,7 @@ export default defineNuxtConfig({
     i18n: {
         baseUrl: 'https://meguri.moe',
         strategy: 'no_prefix',
-        detectBrowserLanguage: {
-            useCookie: true,
-            cookieKey: 'lang',
-            redirectOn: 'root',
-        },
+        detectBrowserLanguage: false,
         lazy: true,
         langDir: 'lang',
         defaultLocale: 'ja',
