@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="col-left">
-      <a-card class="card card-title" hoverable>
+      <a-card class="card card-title">
         <div class="name">
           <div class="name-element">
             <span lang="ja" class="name-pron">{{ $t('name_family_pron') }}</span>
@@ -14,10 +14,11 @@
         </div>
         <div class="title">{{ $t('refernces') }}</div>
       </a-card>
-      <a-card class="card card-nav">
-        <a-button type="text" size="small"></a-button>
-        <a-button type="text" size="small" :lang="$i18n.locale == 'ja' ? 'zh-CN' : 'ja'" @click="$i18n.setLocale($i18n.locale == 'ja' ? 'zh-CN' : 'ja')">{{ $t('lang_switch') }}</a-button>
-      </a-card>
+      <a-menu class="nav-menu" mode="horizontal" :default-selected-keys="['1']">
+        <a-button type="text" size="small" @click="goBack" disabled>{{ $t('go_back') }}</a-button>
+        <a-menu-item key="1">{{ $t('setting') }}</a-menu-item>
+        <a-button type="text" size="small" @click="$i18n.setLocale($i18n.locale == 'ja' ? 'zh-CN' : 'ja')">{{ $t('lang_switch') }}</a-button>
+      </a-menu>
       <a-card class="card card-setting">
         <table>
           <tr>
@@ -112,9 +113,12 @@
       </div>
     </div>
     <div class="col-right">
-      <a-card class="card card-image" hoverable></a-card>
-      <a-card class="card card-image" hoverable></a-card>
+      <a-card class="card card-image"></a-card>
+      <a-card class="card card-image"></a-card>
     </div>
+  </div>
+  <div class="side-character">
+    <img :src="'https://static.acgtour.com/meguri/t/' + Math.floor(Math.random() * (Math.floor(4) - Math.ceil(1)) + Math.ceil(1)) + '.png/image.webp'" />
   </div>
 </template>
 <script lang="ts" setup>
@@ -129,6 +133,9 @@ nuxtApp.$i18n.onLanguageSwitched = (oldLocale: string, newLocale: string) => {
       lang: computed(() => newLocale)
     }
   })
+}
+function goBack() {
+  window.open('https://www.acgtour.com', '_blank')
 }
 </script>
 <script lang="ts">
@@ -148,12 +155,13 @@ export default {
 }
 
 *:lang(zh-CN) {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
 }
 
-body {
+html {
   -webkit-font-smoothing: antialiased;
   font-family: unset;
+  background: linear-gradient(135deg, #e0f3f8 30%, #ede3f4 50%, #f6e4e9 70%) no-repeat center center fixed;
 }
 
 a {
@@ -183,6 +191,7 @@ a {
 
 .footer {
   margin-top: 15px;
+  margin-bottom: 15px;
   padding-left: 8px;
   color: #878787;
   font-size: 13px;
@@ -193,7 +202,9 @@ a {
   border-radius: 8px;
   box-sizing: border-box;
   margin-bottom: 10px;
-  box-shadow: 0 4px 10px rgb(var(--gray-2));
+  border: 0.5px solid var(--color-neutral-3);
+  background: rgba(255, 255, 255, .5);
+  backdrop-filter: blur(5px);
 }
 
 .card-title {
@@ -237,7 +248,49 @@ a {
   }
 }
 
-.card-nav {}
+.nav-menu {
+  width: 100%;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  border: 0.5px solid var(--color-neutral-3);
+  background: rgba(255, 255, 255, .5);
+  backdrop-filter: blur(5px);
+
+  .arco-menu-overflow-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .arco-menu-item {
+    background: transparent;
+    font-weight: 500;
+    margin: 0 !important;
+
+    &:hover {
+      background-color: rgba(255, 232, 235, 0.3);
+    }
+  }
+
+  .arco-btn-text {
+    background: transparent;
+    color: var(--color-text-2);
+    font-weight: 500;
+  }
+
+  .arco-btn-text:hover {
+    background-color: rgba(255, 232, 235, 0.3);
+    color: var(--color-text-2);
+    font-weight: 500;
+  }
+
+  .arco-btn-disabled,
+  .arco-btn-disabled:hover {
+    background: transparent;
+    color: var(--color-text-4) !important;
+  }
+}
 
 .card-setting {
   font-size: 16px;
@@ -290,5 +343,20 @@ a {
 
 .card-image {
   height: 350px;
+}
+
+.side-character {
+  width: 240px;
+  display: block;
+  user-select: none;
+  margin-bottom: -150px;
+  margin-left: 20px;
+  bottom: 0;
+  position: fixed;
+  z-index: -2;
+
+  img {
+    width: 240px;
+  }
 }
 </style>
