@@ -3,18 +3,14 @@
     <div class="col-left">
       <a-card class="card card-title" hoverable>
         <div class="name">
-          <ruby>
+          <div class="name-element">
+            <span lang="ja" class="name-pron">{{ $t('name_family_pron') }}</span>
             <span>{{ $t('name_family') }}</span>
-            <rp>(</rp>
-            <rt lang="ja" class="name-pron">{{ $t('name_family_pron') }}</rt>
-            <rp>)</rp>
-          </ruby>
-          <ruby>
+          </div>
+          <div class="name-element">
+            <span lang="ja" class="name-pron">{{ $t('name_given_pron') }}</span>
             <span>{{ $t('name_given') }}</span>
-            <rp>(</rp>
-            <rt lang="ja" class="name-pron">{{ $t('name_given_pron') }}</rt>
-            <rp>)</rp>
-          </ruby>
+          </div>
         </div>
         <div class="title">{{ $t('refernces') }}</div>
       </a-card>
@@ -157,7 +153,6 @@ export default {
 
 body {
   -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
   font-family: unset;
 }
 
@@ -214,12 +209,26 @@ a {
   }
 
   .name {
-    font-size: 26px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 28px;
     font-weight: 700;
-    margin-bottom: 4px;
-    background-image: linear-gradient(45deg, #94dbf0 38%, #e7c3ff 50%, #fbb3c5 62%);
+    margin-bottom: 6px;
+    background: linear-gradient(45deg, #94dbf0 40%, #e7c3ff 50%, #fbb3c5 58%);
+    -webkit-background-clip: text;
     background-clip: text;
-    color: transparent;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+
+    .name-element {
+      display: flex;
+      flex-direction: column;
+
+      .name-pron {
+        font-size: 13px;
+      }
+    }
   }
 
   .title {
