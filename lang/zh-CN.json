@@ -27,5 +27,9 @@
     "hair_color": "发色",
     "color_help": "仅供参考",
     "chara": "特征",
-    "chara_val": "单纯、元气的萝莉系少女"
+    "chara_val": "单纯、元气的萝莉系少女",
+    "uniform": "制服",
+    "private": "私服 (连衣裙)",
+    "details": "查看原图",
+    "continued": "待续..."
 }

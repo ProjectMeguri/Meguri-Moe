@@ -109,16 +109,57 @@
         </table>
       </a-card>
       <div class="footer" lang="zh-CN">
-        <span>&copy; 2022 梦途圣地巡礼 Acgtour.com All rights reserved.</span>
+        <p>&copy; 2022 梦途圣地巡礼 Acgtour.com All rights reserved.</p>
       </div>
     </div>
     <div class="col-right">
-      <a-card class="card card-image"></a-card>
-      <a-card class="card card-image"></a-card>
+      <a href="https://static.acgtour.com/meguri/setting/uniform.png" target="_blank">
+        <a-card class="card card-image">
+          <picture>
+            <source srcset="https://static.acgtour.com/meguri/setting/uniform.png/setting_thumb-1x.webp 1x, https://static.acgtour.com/meguri/setting/uniform.png/setting_thumb-2x.webp 2x, https://static.acgtour.com/meguri/setting/uniform.png/setting_thumb-3x.webp 3x" type="image/webp">
+            <source srcset="https://static.acgtour.com/meguri/setting/uniform.png/setting_thumb-1x.png 1x, https://static.acgtour.com/meguri/setting/uniform.png/setting_thumb-2x.png 2x, https://static.acgtour.com/meguri/setting/uniform.png/setting_thumb-3x.png 3x" type="image/png">
+            <img src="https://static.acgtour.com/meguri/setting/uniform.png/setting_thumb-2x.png">
+          </picture>
+          <div class="description">
+            <p class="title">{{ $t('uniform') }} Ver.</p>
+            <div class="icon-magnifier">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" class="arco-icon arco-icon-zoom-in" stroke-width="4" stroke-linecap="butt" stroke-linejoin="miter">
+                <path d="M32.607 32.607A14.953 14.953 0 0 0 37 22c0-8.284-6.716-15-15-15-8.284 0-15 6.716-15 15 0 8.284 6.716 15 15 15 4.142 0 7.892-1.679 10.607-4.393Zm0 0L41.5 41.5M29 22H15m7 7V15"></path>
+              </svg>
+              {{ $t('details') }} »
+            </div>
+          </div>
+        </a-card>
+      </a>
+      <a href="https://static.acgtour.com/meguri/setting/private.png" target="_blank">
+        <a-card class="card card-image">
+          <picture>
+            <source srcset="https://static.acgtour.com/meguri/setting/private.png/setting_thumb-1x.webp 1x, https://static.acgtour.com/meguri/setting/private.png/setting_thumb-2x.webp 2x, https://static.acgtour.com/meguri/setting/private.png/setting_thumb-3x.webp 3x" type="image/webp">
+            <source srcset="https://static.acgtour.com/meguri/setting/private.png/setting_thumb-1x.png 1x, https://static.acgtour.com/meguri/setting/private.png/setting_thumb-2x.png 2x, https://static.acgtour.com/meguri/setting/private.png/setting_thumb-3x.png 3x" type="image/png">
+            <img src="https://static.acgtour.com/meguri/setting/private.png/setting_thumb-2x.png">
+          </picture>
+          <div class="description">
+            <p class="title">{{ $t('private') }} Ver.</p>
+            <div class="icon-magnifier">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" class="arco-icon arco-icon-zoom-in" stroke-width="4" stroke-linecap="butt" stroke-linejoin="miter">
+                <path d="M32.607 32.607A14.953 14.953 0 0 0 37 22c0-8.284-6.716-15-15-15-8.284 0-15 6.716-15 15 0 8.284 6.716 15 15 15 4.142 0 7.892-1.679 10.607-4.393Zm0 0L41.5 41.5M29 22H15m7 7V15"></path>
+              </svg>
+              {{ $t('details') }} »
+            </div>
+          </div>
+        </a-card>
+      </a>
+      <div class="footer">
+        <p>{{ $t('continued') }}</p>
+      </div>
     </div>
   </div>
   <div class="side-character">
-    <img :src="'https://static.acgtour.com/meguri/t/' + Math.floor(Math.random() * (Math.floor(4) - Math.ceil(1)) + Math.ceil(1)) + '.png/image.webp'" />
+    <picture>
+      <source :srcset="'https://static.acgtour.com/meguri/t/' + randnum + '.png/chara_thumb-1x.webp 1x, https://static.acgtour.com/meguri/t/' + randnum + '.png/chara_thumb-2x.webp 2x, https://static.acgtour.com/meguri/t/' + randnum + '.png/chara_thumb-3x.webp 3x'" type="image/webp">
+      <source :srcset="'https://static.acgtour.com/meguri/t/' + randnum + '.png/chara_thumb-1x.png 1x, https://static.acgtour.com/meguri/t/' + randnum + '.png/chara_thumb-2x.png 2x, https://static.acgtour.com/meguri/t/' + randnum + '.png/chara_thumb-3x.png 3x'" type="image/png">
+      <img :src="'https://static.acgtour.com/meguri/t/' + randnum + '.png/chara_thumb-2x.webp'">
+    </picture>
   </div>
 </template>
 <script lang="ts" setup>
@@ -137,6 +178,7 @@ nuxtApp.$i18n.onLanguageSwitched = (oldLocale: string, newLocale: string) => {
 function goBack() {
   window.open('https://www.acgtour.com', '_blank')
 }
+var randnum = Math.floor(Math.random() * (Math.floor(4) - Math.ceil(1)) + Math.ceil(1))
 </script>
 <script lang="ts">
 export default {
@@ -155,7 +197,7 @@ export default {
 }
 
 *:lang(zh-CN) {
-  font-family: "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei";
+  font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei";
 }
 
 html {
@@ -182,19 +224,26 @@ a {
   width: 375px;
   top: 0;
   height: 100%;
+
+  .footer {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    color: #878787;
+    font-size: 13px;
+  }
 }
 
 .col-right {
   width: 615px;
   padding-left: 10px;
-}
 
-.footer {
-  margin-top: 15px;
-  margin-bottom: 15px;
-  padding-left: 8px;
-  color: #878787;
-  font-size: 13px;
+  .footer {
+    margin-bottom: 15px;
+    text-align: center;
+    color: #636363;
+    font-size: 13px;
+  }
 }
 
 .card {
@@ -202,7 +251,7 @@ a {
   border-radius: 8px;
   box-sizing: border-box;
   margin-bottom: 10px;
-  border: 0.5px solid var(--color-neutral-3);
+  border: 0.5px solid rgba(229, 230, 235, 0.5);
   background: rgba(255, 255, 255, .5);
   backdrop-filter: blur(5px);
 }
@@ -230,7 +279,7 @@ a {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    line-height: 1;
+    line-height: 1.1;
 
     .name-element {
       display: flex;
@@ -238,6 +287,7 @@ a {
 
       .name-pron {
         font-size: 13px;
+        line-height: 1;
       }
     }
   }
@@ -342,7 +392,46 @@ a {
 }
 
 .card-image {
-  height: 350px;
+  width: 100%;
+  cursor: pointer;
+
+  .arco-card-body {
+    padding: 5px;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 15px;
+    margin-right: 30px;
+
+    .icon-magnifier {
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 500;
+      color: #757986;
+
+      svg {
+        width: 15px;
+        height: 15px;
+        margin-right: 1px;
+      }
+    }
+
+    .title {
+      font-size: 28px;
+      margin: 0 0 5px 0;
+    }
+  }
 }
 
 .side-character {

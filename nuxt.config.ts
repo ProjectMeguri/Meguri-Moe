@@ -2,7 +2,13 @@
 export default defineNuxtConfig({
     app: {
         head: {
+            meta: [
+                { charset: "utf-8" },
+                { property: "og:title", content: "「夢野巡璃」参考資料" },
+                { property: "og:type", content: "website" }
+            ],
             "link": [
+                { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
                 { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
                 { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: "" },
                 { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&display=swap' },

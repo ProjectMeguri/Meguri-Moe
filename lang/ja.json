@@ -26,5 +26,9 @@
     "hair_color": "髪の色",
     "color_help": "ご参考まで",
     "chara": "特徴",
-    "chara_val": "清楚で元気なロリっぽい少女"
+    "chara_val": "清楚で元気なロリっぽい少女",
+    "uniform": "制服",
+    "private": "私服 (ワンピース)",
+    "details": "詳細表示",
+    "continued": "つづく..."
 }
