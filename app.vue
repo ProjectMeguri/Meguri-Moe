@@ -1,30 +1,451 @@
 <template>
-  <div>
-    <form>
-      <a-button type="primary" @click="$i18n.setLocale('zh-CN')">zh-CN</a-button>
-      <a-button type="primary" @click="$i18n.setLocale('ja')">ja</a-button>
-      <a-button type="primary" @click="$i18n.setLocale('en')">en</a-button>
-      <client-only>
-        {{ $t('test') }}
-      </client-only>
-    </form>
+  <div class="container">
+    <div class="col-left">
+      <a-card class="card card-title">
+        <div class="name">
+          <div class="name-element">
+            <span lang="ja" class="name-pron">{{ $t('name_family_pron') }}</span>
+            <span>{{ $t('name_family') }}</span>
+          </div>
+          <div class="name-element">
+            <span lang="ja" class="name-pron">{{ $t('name_given_pron') }}</span>
+            <span>{{ $t('name_given') }}</span>
+          </div>
+        </div>
+        <div class="title">{{ $t('refernces') }}</div>
+      </a-card>
+      <a-menu class="nav-menu" mode="horizontal" :default-selected-keys="['1']">
+        <a-button type="text" size="small" @click="goBack" disabled>{{ $t('go_back') }}</a-button>
+        <a-menu-item key="1">{{ $t('setting') }}</a-menu-item>
+        <a-button type="text" size="small" @click="$i18n.setLocale($i18n.locale == 'ja' ? 'zh-CN' : 'ja')">{{ $t('lang_switch') }}</a-button>
+      </a-menu>
+      <a-card class="card card-setting">
+        <table>
+          <tr>
+            <th>{{ $t('name') }}</th>
+            <td>{{ $t('yumeno_meguri') }}</td>
+          </tr>
+          <tr>
+            <th>{{ $t('pronounce') }}</th>
+            <td v-if="$i18n.locale == 'ja'" lang="ja">{{ $t('yumeno_meguri_pron') }}</td>
+            <td v-else lang="ja">
+              <ruby>
+                <span>{{ $t('name_family_pron') }}</span>
+                <rp>(</rp>
+                <rt>{{ $t('name_family_pron_en') }}</rt>
+                <rp>)</rp>
+              </ruby>
+              <span>&nbsp;</span>
+              <ruby>
+                <span>{{ $t('name_given_pron') }}</span>
+                <rp>(</rp>
+                <rt>{{ $t('name_given_pron_en') }}</rt>
+                <rp>)</rp>
+              </ruby>
+            </td>
+          </tr>
+          <tr>
+            <th>{{ $t('age') }}</th>
+            <td>{{ $t('13yo') }}</td>
+          </tr>
+          <tr>
+            <th>{{ $t('birthday') }}</th>
+            <td>{{ $t('birthday_date') }}</td>
+          </tr>
+          <tr>
+            <th>{{ $t('height') }}</th>
+            <td>{{ $t('145cm') }}</td>
+          </tr>
+          <tr>
+            <th>{{ $t('bust') }}</th>
+            <td>{{ $t('a_cup') }}</td>
+          </tr>
+          <tr>
+            <th>{{ $t('eye_color') }}</th>
+            <td class="color-box">
+              <a-tooltip content-class="color-box" content="#FDC0D0" position="top" mini>
+                <div style="background-color: #FDC0D0;"></div>
+              </a-tooltip>
+              <a-tooltip content-class="color-box" content="#A0D9EA" position="top" mini>
+                <div style="background-color: #A0D9EA;"></div>
+              </a-tooltip>
+              <a-tooltip content-class="color-box" content="#B33B61" position="top" mini>
+                <div style="background-color: #B33B61;"></div>
+              </a-tooltip>
+              <a-tooltip content-class="color-box" content="#4473A1" position="top" mini>
+                <div style="background-color: #4473A1;"></div>
+              </a-tooltip>
+              <a-tooltip content-class="color-box" :content="$t('color_help')" position="right" mini>
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" class="icon-help" stroke-width="4" stroke-linecap="butt" stroke-linejoin="miter" filter="ques" data-v-249840b0="" style="font-size: 32px;">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4 4 12.954 4 24s8.954 20 20 20Zm-3.862-24.021a.461.461 0 0 0 .462-.462 2.37 2.37 0 0 1 .636-1.615C21.64 17.48 22.43 17 23.988 17c1.465 0 2.483.7 3.002 1.493.555.848.446 1.559.182 1.914-.328.444-.736.853-1.228 1.296-.15.135-.335.296-.533.468-.354.308-.75.654-1.067.955C23.22 24.195 22 25.686 22 28v.013a1 1 0 0 0 1.006.993l2.008-.012a.993.993 0 0 0 .986-1c.002-.683.282-1.19 1.101-1.97.276-.262.523-.477.806-.722.21-.18.439-.379.713-.626.57-.513 1.205-1.13 1.767-1.888 1.516-2.047 1.161-4.634-.05-6.485C29.092 14.398 26.825 13 23.988 13c-2.454 0-4.357.794-5.642 2.137-1.25 1.307-1.742 2.954-1.746 4.37 0 .26.21.472.47.472h3.068Zm1.868 14.029a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V32a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v2.008Z" fill="currentColor" stroke="none"></path>
+                </svg>
+              </a-tooltip>
+            </td>
+          </tr>
+          <tr>
+            <th>{{ $t('hair_style') }}</th>
+            <td>{{ $t('hair_style_val') }}</td>
+          </tr>
+          <tr>
+            <th>{{ $t('hair_color') }}</th>
+            <td class="color-box">
+              <a-tooltip content-class="color-box" content="#D2EDFF" position="top" mini>
+                <div style="background-color: #D2EDFF;"></div>
+              </a-tooltip>
+              <a-tooltip content-class="color-box" content="#FCD7DE" position="top" mini>
+                <div style="background-color: #FCD7DE;"></div>
+              </a-tooltip>
+              <a-tooltip content-class="color-box" :content="$t('color_help')" position="right" mini>
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" class="icon-help" stroke-width="4" stroke-linecap="butt" stroke-linejoin="miter" filter="ques" data-v-249840b0="" style="font-size: 32px;">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M24 44c11.046 0 20-8.954 20-20S35.046 4 24 4 4 12.954 4 24s8.954 20 20 20Zm-3.862-24.021a.461.461 0 0 0 .462-.462 2.37 2.37 0 0 1 .636-1.615C21.64 17.48 22.43 17 23.988 17c1.465 0 2.483.7 3.002 1.493.555.848.446 1.559.182 1.914-.328.444-.736.853-1.228 1.296-.15.135-.335.296-.533.468-.354.308-.75.654-1.067.955C23.22 24.195 22 25.686 22 28v.013a1 1 0 0 0 1.006.993l2.008-.012a.993.993 0 0 0 .986-1c.002-.683.282-1.19 1.101-1.97.276-.262.523-.477.806-.722.21-.18.439-.379.713-.626.57-.513 1.205-1.13 1.767-1.888 1.516-2.047 1.161-4.634-.05-6.485C29.092 14.398 26.825 13 23.988 13c-2.454 0-4.357.794-5.642 2.137-1.25 1.307-1.742 2.954-1.746 4.37 0 .26.21.472.47.472h3.068Zm1.868 14.029a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V32a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v2.008Z" fill="currentColor" stroke="none"></path>
+                </svg>
+              </a-tooltip>
+            </td>
+          </tr>
+          <tr>
+            <th>{{ $t('chara') }}</th>
+            <td>{{ $t('chara_val') }}</td>
+          </tr>
+        </table>
+      </a-card>
+      <div class="footer" lang="zh-CN">
+        <p>&copy; 2022 梦途圣地巡礼 Acgtour.com All rights reserved.</p>
+      </div>
+    </div>
+    <div class="col-right">
+      <a href="https://static.acgtour.com/meguri/setting/uniform.png" target="_blank">
+        <a-card class="card card-image">
+          <picture>
+            <source srcset="https://static.acgtour.com/meguri/setting/uniform.png/setting_thumb-1x.webp 1x, https://static.acgtour.com/meguri/setting/uniform.png/setting_thumb-2x.webp 2x, https://static.acgtour.com/meguri/setting/uniform.png/setting_thumb-3x.webp 3x" type="image/webp">
+            <source srcset="https://static.acgtour.com/meguri/setting/uniform.png/setting_thumb-1x.png 1x, https://static.acgtour.com/meguri/setting/uniform.png/setting_thumb-2x.png 2x, https://static.acgtour.com/meguri/setting/uniform.png/setting_thumb-3x.png 3x" type="image/png">
+            <img src="https://static.acgtour.com/meguri/setting/uniform.png/setting_thumb-2x.png">
+          </picture>
+          <div class="description">
+            <p class="title">{{ $t('uniform') }} Ver.</p>
+            <div class="icon-magnifier">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" class="arco-icon arco-icon-zoom-in" stroke-width="4" stroke-linecap="butt" stroke-linejoin="miter">
+                <path d="M32.607 32.607A14.953 14.953 0 0 0 37 22c0-8.284-6.716-15-15-15-8.284 0-15 6.716-15 15 0 8.284 6.716 15 15 15 4.142 0 7.892-1.679 10.607-4.393Zm0 0L41.5 41.5M29 22H15m7 7V15"></path>
+              </svg>
+              {{ $t('details') }} »
+            </div>
+          </div>
+        </a-card>
+      </a>
+      <a href="https://static.acgtour.com/meguri/setting/private.png" target="_blank">
+        <a-card class="card card-image">
+          <picture>
+            <source srcset="https://static.acgtour.com/meguri/setting/private.png/setting_thumb-1x.webp 1x, https://static.acgtour.com/meguri/setting/private.png/setting_thumb-2x.webp 2x, https://static.acgtour.com/meguri/setting/private.png/setting_thumb-3x.webp 3x" type="image/webp">
+            <source srcset="https://static.acgtour.com/meguri/setting/private.png/setting_thumb-1x.png 1x, https://static.acgtour.com/meguri/setting/private.png/setting_thumb-2x.png 2x, https://static.acgtour.com/meguri/setting/private.png/setting_thumb-3x.png 3x" type="image/png">
+            <img src="https://static.acgtour.com/meguri/setting/private.png/setting_thumb-2x.png">
+          </picture>
+          <div class="description">
+            <p class="title">{{ $t('private') }} Ver.</p>
+            <div class="icon-magnifier">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" class="arco-icon arco-icon-zoom-in" stroke-width="4" stroke-linecap="butt" stroke-linejoin="miter">
+                <path d="M32.607 32.607A14.953 14.953 0 0 0 37 22c0-8.284-6.716-15-15-15-8.284 0-15 6.716-15 15 0 8.284 6.716 15 15 15 4.142 0 7.892-1.679 10.607-4.393Zm0 0L41.5 41.5M29 22H15m7 7V15"></path>
+              </svg>
+              {{ $t('details') }} »
+            </div>
+          </div>
+        </a-card>
+      </a>
+      <div class="footer">
+        <p>{{ $t('continued') }}</p>
+      </div>
+    </div>
+  </div>
+  <div class="side-character">
+    <picture>
+      <source :srcset="'https://static.acgtour.com/meguri/t/' + randnum + '.png/chara_thumb-1x.webp 1x, https://static.acgtour.com/meguri/t/' + randnum + '.png/chara_thumb-2x.webp 2x, https://static.acgtour.com/meguri/t/' + randnum + '.png/chara_thumb-3x.webp 3x'" type="image/webp">
+      <source :srcset="'https://static.acgtour.com/meguri/t/' + randnum + '.png/chara_thumb-1x.png 1x, https://static.acgtour.com/meguri/t/' + randnum + '.png/chara_thumb-2x.png 2x, https://static.acgtour.com/meguri/t/' + randnum + '.png/chara_thumb-3x.png 3x'" type="image/png">
+      <img :src="'https://static.acgtour.com/meguri/t/' + randnum + '.png/chara_thumb-2x.webp'">
+    </picture>
   </div>
 </template>
 <script lang="ts" setup>
+const { t } = useI18n()
+const nuxtApp = useNuxtApp()
+useHead({
+  title: computed(() => t('title'))
+})
+nuxtApp.$i18n.onLanguageSwitched = (oldLocale: string, newLocale: string) => {
+  useHead({
+    htmlAttrs: {
+      lang: computed(() => newLocale)
+    }
+  })
+}
+function goBack() {
+  window.open('https://www.acgtour.com', '_blank')
+}
+var randnum = Math.floor(Math.random() * (Math.floor(4) - Math.ceil(1)) + Math.ceil(1))
+</script>
+<script lang="ts">
+export default {
+  created() {
+    useHead({
+      htmlAttrs: {
+        lang: this.$i18n.locale
+      }
+    })
+  }
+}
 </script>
 <style lang="less">
+*:lang(ja) {
+  font-family: 'Zen Maru Gothic';
+}
+
+*:lang(zh-CN) {
+  font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei";
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  font-family: unset;
+  background: linear-gradient(135deg, #e0f3f8 30%, #ede3f4 50%, #f6e4e9 70%) no-repeat center center fixed;
+}
+
 a {
   text-decoration: none;
   transition: all .1s ease-in-out;
 }
 
-body {
-  -webkit-font-smoothing: antialiased;
-  font-smoothing: antialiased;
+
+.container {
+  max-width: 1000px;
+  display: flex;
+  margin: auto;
+  padding-top: 10px;
 }
 
-ol,
-ul {
-  list-style: none;
+.col-left {
+  position: sticky;
+  width: 375px;
+  top: 0;
+  height: 100%;
+
+  .footer {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+    color: #878787;
+    font-size: 13px;
+  }
+}
+
+.col-right {
+  width: 615px;
+  padding-left: 10px;
+
+  .footer {
+    margin-bottom: 15px;
+    text-align: center;
+    color: #636363;
+    font-size: 13px;
+  }
+}
+
+.card {
+  width: 100%;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  border: 0.5px solid rgba(229, 230, 235, 0.5);
+  background: rgba(255, 255, 255, .5);
+  backdrop-filter: blur(5px);
+}
+
+.card-title {
+  text-align: center;
+
+  ruby:first-child {
+    margin-right: 7px;
+  }
+
+  rt {
+    padding-left: 6.5px;
+    padding-right: 6.5px;
+  }
+
+  .name {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    background: linear-gradient(45deg, #94dbf0 40%, #e7c3ff 50%, #fbb3c5 58%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.1;
+
+    .name-element {
+      display: flex;
+      flex-direction: column;
+
+      .name-pron {
+        font-size: 13px;
+        line-height: 1;
+      }
+    }
+  }
+
+  .title {
+    font-size: 22px;
+    font-weight: 500;
+  }
+}
+
+.nav-menu {
+  width: 100%;
+  border-radius: 8px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  border: 0.5px solid var(--color-neutral-3);
+  background: rgba(255, 255, 255, .5);
+  backdrop-filter: blur(5px);
+
+  .arco-menu-overflow-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .arco-menu-item {
+    background: transparent;
+    font-weight: 500;
+    margin: 0 !important;
+
+    &:hover {
+      background-color: rgba(255, 232, 235, 0.3);
+    }
+  }
+
+  .arco-btn-text {
+    background: transparent;
+    color: var(--color-text-2);
+    font-weight: 500;
+  }
+
+  .arco-btn-text:hover {
+    background-color: rgba(255, 232, 235, 0.3);
+    color: var(--color-text-2);
+    font-weight: 500;
+  }
+
+  .arco-btn-disabled,
+  .arco-btn-disabled:hover {
+    background: transparent;
+    color: var(--color-text-4) !important;
+  }
+}
+
+.card-setting {
+  font-size: 16px;
+  text-align: left;
+  padding: 5px 10px;
+
+  table {
+    width: 100%;
+    line-height: 23px;
+
+    th {
+      font-weight: 700;
+      width: 70px;
+    }
+
+    td {
+      font-weight: 500;
+    }
+  }
+}
+
+.color-box {
+  display: flex;
+  height: 23px;
+  align-items: center;
+  font-family: monospace;
+  font-size: 15px;
+
+  div {
+    height: 16px;
+    width: 16px;
+    border: 0.5px solid #878787;
+    border-radius: 3px;
+    display: inline-block;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      margin-right: 3px;
+    }
+  }
+}
+
+.icon-help {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  outline: none;
+}
+
+.card-image {
+  width: 100%;
+  cursor: pointer;
+
+  .arco-card-body {
+    padding: 5px;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 15px;
+    margin-right: 30px;
+
+    .icon-magnifier {
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 500;
+      color: #757986;
+
+      svg {
+        width: 15px;
+        height: 15px;
+        margin-right: 1px;
+      }
+    }
+
+    .title {
+      font-size: 28px;
+      margin: 0 0 5px 0;
+    }
+  }
+}
+
+.side-character {
+  width: 240px;
+  display: block;
+  user-select: none;
+  margin-bottom: -150px;
+  margin-left: 20px;
+  bottom: 0;
+  position: fixed;
+  z-index: -2;
+
+  img {
+    width: 240px;
+  }
 }
 </style>
