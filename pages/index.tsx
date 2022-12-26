@@ -35,7 +35,7 @@ export default function Home({ serverRandPic }) {
             </div>
             <div className="title">{t('refernces')}</div>
           </Card>
-          <Menu className="nav-menu" mode="horizontal" defaultSelectedKeys={['0']} selectedKeys={['0']}>
+          <Menu className="nav-menu" mode="horizontal" ellipsis={false} defaultSelectedKeys={['0']} selectedKeys={['0']}>
             <Button type="text" size="small" onClick={() => { window.open('https://www.acgtour.com', '_blank') }} disabled>{t('go_back')}</Button>
             <MenuItem key='0'>{t('setting')}</MenuItem>
             <Button type="text" size="small" onClick={() => { router.push('/', '/', { locale: changeTo }) }}>{t('lang_switch')}</Button>
@@ -134,7 +134,7 @@ export default function Home({ serverRandPic }) {
               </tbody>
             </table>
           </Card>
-          <div className="footer" lang="zh-CN">
+          <div className="copyright-pc" lang="zh-CN">
             <a>&copy; 2022 梦途圣地巡礼 Acgtour.com All rights reserved.</a>
           </div>
         </div>
@@ -175,6 +175,9 @@ export default function Home({ serverRandPic }) {
               </div>
             </Card>
           </a>
+          <div className="copyright-mobile" lang="zh-CN">
+            <a>&copy; 2022 梦途圣地巡礼 Acgtour.com All rights reserved.</a>
+          </div>
         </div>
       </div>
       <div className="side-character">
