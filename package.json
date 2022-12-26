@@ -1,6 +1,5 @@
 {
-  "name": "meguri-react",
-  "version": "0.1.0",
+  "name": "meguri",
   "private": true,
   "scripts": {
     "dev": "next dev",
