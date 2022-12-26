@@ -11,11 +11,10 @@ type Props = {
   // Add custom props here
 }
 
-export default function Home() {
+export default function Home({ serverRandPic }) {
   const { t } = useTranslation('common')
   const router = useRouter()
   const changeTo = router.locale === 'ja' ? 'zh' : 'ja'
-  const randpic = Math.floor(Math.random() * (Math.floor(4) - Math.ceil(1)) + Math.ceil(1))
   return (
     <>
       <Head>
@@ -180,9 +179,9 @@ export default function Home() {
       </div>
       <div className="side-character">
         <picture>
-          <source srcSet={'https://static.acgtour.com/meguri/t/' + randpic + '.png/chara_thumb-1x.webp 1x, https://static.acgtour.com/meguri/t/' + randpic + '.png/chara_thumb-2x.webp 2x, https://static.acgtour.com/meguri/t/' + randpic + '.png/chara_thumb-3x.webp 3x'} type="image/webp" />
-          <source srcSet={'https://static.acgtour.com/meguri/t/' + randpic + '.png/chara_thumb-1x.png 1x, https://static.acgtour.com/meguri/t/' + randpic + '.png/chara_thumb-2x.png 2x, https://static.acgtour.com/meguri/t/' + randpic + '.png/chara_thumb-3x.png 3x'} type="image/png" />
-          <img src={'https://static.acgtour.com/meguri/t/' + randpic + '.png/chara_thumb-2x.webp'} alt="" />
+          <source srcSet={'https://static.acgtour.com/meguri/t/' + serverRandPic + '.png/chara_thumb-1x.webp 1x, https://static.acgtour.com/meguri/t/' + serverRandPic + '.png/chara_thumb-2x.webp 2x, https://static.acgtour.com/meguri/t/' + serverRandPic + '.png/chara_thumb-3x.webp 3x'} type="image/webp" />
+          <source srcSet={'https://static.acgtour.com/meguri/t/' + serverRandPic + '.png/chara_thumb-1x.png 1x, https://static.acgtour.com/meguri/t/' + serverRandPic + '.png/chara_thumb-2x.png 2x, https://static.acgtour.com/meguri/t/' + serverRandPic + '.png/chara_thumb-3x.png 3x'} type="image/png" />
+          <img src={'https://static.acgtour.com/meguri/t/' + serverRandPic + '.png/chara_thumb-2x.webp'} alt="" />
         </picture>
       </div>
     </>
@@ -192,5 +191,6 @@ export default function Home() {
 export const getServerSideProps: GetServerSideProps<Props> = async ({ locale }) => ({
   props: {
     ...(await serverSideTranslations(locale ?? 'ja', ['common'])),
+    serverRandPic: Math.floor(Math.random() * (Math.floor(4) - Math.ceil(1)) + Math.ceil(1))
   },
 })
