@@ -66,13 +66,12 @@ a {
   .copyright-pc {
     margin-top: 15px;
     margin-bottom: 15px;
-    padding-left: 15px;
     color: #878787;
     font-size: 13px;
   }
 
   .copyright-mobile {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -133,7 +132,7 @@ a {
   }
 
   .copyright-pc {
-    display: none;
+    display: none !important;
   }
 
   .side-character {
@@ -347,5 +346,20 @@ a {
 
   img {
     width: 240px;
+  }
+}
+
+.copyright-pc,
+.copyright-mobile {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    color: #878787;
+    fill: currentColor;
   }
 }
