@@ -1,17 +1,18 @@
-*:lang(ja) {
-  font-family: "Zen Maru Gothic";
+*:lang(ja),
+html:lang(ja)>body {
+  font-family: "Zen Maru Gothic", ui-sans-serif, system-ui, -apple-system;
 }
 
-*:lang(zh-CN) {
-  font-family: -apple-system, "PingFang SC", "Hiragino Sans GB",
-    "Microsoft YaHei", "WenQuanYi Micro Hei";
+*:lang(zh),
+*:lang(zh-CN),
+html:lang(zh)>body {
+  font-family: Nunito, ui-sans-serif, system-ui, -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei";
 }
 
 html {
   -webkit-font-smoothing: antialiased;
   font-family: unset;
-  background: linear-gradient(135deg, #e0f3f8 30%, #ede3f4 50%, #f6e4e9 70%)
-    no-repeat center center fixed;
+  background: linear-gradient(135deg, #e0f3f8 30%, #ede3f4 50%, #f6e4e9 70%) no-repeat center center fixed;
 }
 
 a {
@@ -65,13 +66,12 @@ a {
   .copyright-pc {
     margin-top: 15px;
     margin-bottom: 15px;
-    padding-left: 15px;
     color: #878787;
     font-size: 13px;
   }
 
   .copyright-mobile {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -132,7 +132,7 @@ a {
   }
 
   .copyright-pc {
-    display: none;
+    display: none !important;
   }
 
   .side-character {
@@ -346,5 +346,20 @@ a {
 
   img {
     width: 240px;
+  }
+}
+
+.copyright-pc,
+.copyright-mobile {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+    color: #878787;
+    fill: currentColor;
   }
 }
